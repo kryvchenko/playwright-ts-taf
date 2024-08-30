@@ -1,0 +1,29 @@
+{
+  "name": "Genesys",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "playwright test",
+    "test-chrome": "playwright test --project=chromium",
+    "tsc": "npx tsc --noEmit",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "prettier": "prettier . --check",
+    "prettier:fix": "prettier . --write"
+  },
+  "author": "kryo",
+  "license": "ISC",
+  "devDependencies": {
+    "@eslint/js": "9.9.1",
+    "@playwright/test": "1.46.1",
+    "@types/eslint__js": "8.42.3",
+    "@types/eslint-config-prettier": "6.11.3",
+    "@types/node": "22.5.1",
+    "eslint": "9.9.1",
+    "eslint-config-prettier": "9.1.0",
+    "eslint-plugin-prettier": "5.2.1",
+    "prettier": "3.3.3",
+    "typescript": "5.5.4",
+    "typescript-eslint": "8.3.0",
+    "husky": "^8.0.0"
+  }
+}
