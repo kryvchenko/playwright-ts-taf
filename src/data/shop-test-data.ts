@@ -5,16 +5,16 @@ export const items = Object.freeze({
 
 export const womanJackets = Object.freeze([
   {
-    productName: "Push It Messenger Bag",
-    numberOfItems: "1",
+    productName: "Olivia 1/4 Zip Light Jacket",
+    numberOfItems: "5",
     size: "XS",
     color: "Black",
   },
   {
     productName: "Juno Jacket",
     numberOfItems: "2",
-    size: "S",
-    color: "Black",
+    size: "L",
+    color: "Blue",
   },
   {
     productName: "Neve Studio Dance Jacket",

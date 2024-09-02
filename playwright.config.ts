@@ -7,11 +7,6 @@ export default defineConfig({
   fullyParallel: true,
   timeout: 90 * 1000,
   expect: {
-    /**
-     * Maximum time expect() should wait for the condition to be met.
-     * For example in `await expect(locator).toHaveText();`
-     */
-
     // Timeout for each assertion:
     timeout: 15000,
   },
@@ -32,7 +27,7 @@ export default defineConfig({
     actionTimeout: 25000,
     navigationTimeout: 60000,
   },
-  /* Configure projects for major browsers */
+  /* Configure projects for different browsers */
   projects: [
     {
       name: "chromium",

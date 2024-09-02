@@ -4,13 +4,17 @@ import {
   numberOfItems,
   shippingType,
 } from "@/constants/shop-const";
-import { customerData, existingCustomerData } from "@/data/account-test-data";
-import { items } from "@/data/shop-test-data";
+import {
+  existingCustomerData,
+  markData,
+  stevenData,
+} from "@/data/account-test-data";
+import { items, womanJackets } from "@/data/shop-test-data";
 import { test } from "@/page-objects/basePO";
 import { generateRandomString } from "@/utils/utils";
 import { expect } from "@playwright/test";
 
-test.describe("Sigh up flow validation", async () => {
+test.describe("Shopping flow validation", async () => {
   let randomEmail: string;
 
   test.beforeAll(async () => {
@@ -35,7 +39,7 @@ test.describe("Sigh up flow validation", async () => {
     await expect(cartPage.cartCounter).toHaveText(numberOfItems.ONE);
     // Checkout
     await cartPage.proceedToCheckout();
-    await cartPage.fillCheckoutForm(customerData, shippingType.FIXED);
+    await cartPage.fillCheckoutForm(markData, shippingType.FIXED);
     await expect(authPage.pageTitle).toHaveText(confirmation.ORDER_PLACED);
   });
 
@@ -52,7 +56,7 @@ test.describe("Sigh up flow validation", async () => {
       randomEmail,
       fakeCredentials.PASSWORD,
     );
-    // Add Bag to the cart
+    // Add item to the cart
     await navigationPage.saleMenuLink.click();
     await navigationPage.bagsLink.click();
     await shopPage.addProductToCart(items.productName, items.numberOfItems);
@@ -63,11 +67,25 @@ test.describe("Sigh up flow validation", async () => {
     await expect(authPage.pageTitle).toHaveText(confirmation.ORDER_PLACED);
   });
 
-  test("Verify that unregistered user can order 12 items", async ({
+  test("Verify that user can buy multiple items", async ({
     navigationPage,
+    shopPage,
+    cartPage,
+    authPage,
   }) => {
-    // Add Bag to the cart
+    // Navigate to category women jackets
     await navigationPage.jacketsLink.first().click();
-    // await shopPage.addProductToCart();
+    // Iterate through test data
+    const items = womanJackets;
+    for (let i = 0; i < items.length; i++) {
+      const { productName, numberOfItems, size, color } = items[i];
+      await shopPage.addProductToCart(productName, numberOfItems, size, color);
+      await navigationPage.jacketsLink.first().click();
+    }
+    await expect(cartPage.cartCounter).toHaveText(numberOfItems.TEN);
+    // Checkout
+    await cartPage.proceedToCheckout();
+    await cartPage.fillCheckoutForm(stevenData, shippingType.FIXED);
+    await expect(authPage.pageTitle).toHaveText(confirmation.ORDER_PLACED);
   });
 });

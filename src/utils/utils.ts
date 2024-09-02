@@ -1,4 +1,4 @@
-import { Locator, Page } from "@playwright/test";
+import { Page } from "@playwright/test";
 
 /**
  * Generates a random string.
@@ -50,28 +50,4 @@ export const debounceDom = async (
     if (!isStable)
       await new Promise((resolve) => setTimeout(resolve, pollDelay));
   }
-};
-
-/**
- * Drag and drop element
- * In some cases the standard dragTo() method from the playwright is not working properly.
- * Assuming the page is static, it is safe to use bounding box coordinates to perform input.
- * @param page
- * @returns {Page}
- * @param originSelector
- * @returns {Locator}
- * @param destinationSelector
- * @returns {Locator}
- * */
-export const dragDrop = async (
-  page: Page,
-  originSelector: Locator,
-  destinationSelector: Locator,
-) => {
-  await originSelector.hover();
-  await page.mouse.down();
-  const box = (await destinationSelector.boundingBox())!;
-  await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
-  await destinationSelector.hover();
-  await page.mouse.up();
 };

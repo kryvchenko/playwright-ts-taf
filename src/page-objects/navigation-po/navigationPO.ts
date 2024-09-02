@@ -3,7 +3,6 @@ import { Locator, Page } from "@playwright/test";
 export default class NavigationPage {
   // Pages
   page: Page;
-
   // Link & Buttons
   saleMenuLink: Locator;
   bagsLink: Locator;
