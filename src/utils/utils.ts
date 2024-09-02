@@ -12,7 +12,8 @@ export const generateRandomString = (): string =>
  * Generates a random characters of a given length.
  */
 export const generateRandomCharacters = (length: number) => {
-  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  const characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
   let result = "";
   const charactersLength = characters.length;
   for (let i = 0; i < length; i++) {
@@ -30,7 +31,11 @@ export const generateRandomCharacters = (length: number) => {
  * @param pollDelay
  * @param stableDelay
  */
-export const debounceDom = async (page: Page, pollDelay = 50, stableDelay = 450) => {
+export const debounceDom = async (
+  page: Page,
+  pollDelay = 50,
+  stableDelay = 450,
+) => {
   let markupPrevious = "";
   const timerStart = new Date();
   let isStable = false;
@@ -42,7 +47,8 @@ export const debounceDom = async (page: Page, pollDelay = 50, stableDelay = 450)
     } else {
       markupPrevious = markupCurrent;
     }
-    if (!isStable) await new Promise((resolve) => setTimeout(resolve, pollDelay));
+    if (!isStable)
+      await new Promise((resolve) => setTimeout(resolve, pollDelay));
   }
 };
 
@@ -57,7 +63,11 @@ export const debounceDom = async (page: Page, pollDelay = 50, stableDelay = 450)
  * @param destinationSelector
  * @returns {Locator}
  * */
-export const dragDrop = async (page: Page, originSelector: Locator, destinationSelector: Locator) => {
+export const dragDrop = async (
+  page: Page,
+  originSelector: Locator,
+  destinationSelector: Locator,
+) => {
   await originSelector.hover();
   await page.mouse.down();
   const box = (await destinationSelector.boundingBox())!;

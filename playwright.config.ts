@@ -1,7 +1,7 @@
 import { defineConfig, devices } from "@playwright/test";
 
 export default defineConfig({
-  globalSetup: require.resolve('./environments/playwright-global-setup'),
+  globalSetup: require.resolve("./environments/playwright-global-setup"),
   testDir: "./src/tests",
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -41,6 +41,6 @@ export default defineConfig({
     {
       name: "webkit",
       use: { ...devices["Desktop Safari"] },
-    }
+    },
   ],
 });

@@ -1,12 +1,11 @@
 import { fakeCredentials } from "@/constants/auth-const";
 import {
   confirmation,
-  customerData,
-  existingCustomerData,
   numberOfItems,
-  productBags,
   shippingType,
 } from "@/constants/shop-const";
+import { customerData, existingCustomerData } from "@/data/account-test-data";
+import { items } from "@/data/shop-test-data";
 import { test } from "@/page-objects/basePO";
 import { generateRandomString } from "@/utils/utils";
 import { expect } from "@playwright/test";
@@ -24,7 +23,7 @@ test.describe("Sigh up flow validation", async () => {
     await navigationPage.saleMenuLink.click();
   });
 
-  test("Verify that unregistered can buy the product @smoke", async ({
+  test("Verify that unregistered user can buy the product @smoke", async ({
     shopPage,
     navigationPage,
     cartPage,
@@ -32,10 +31,7 @@ test.describe("Sigh up flow validation", async () => {
   }) => {
     // Add Bag to the cart
     await navigationPage.bagsLink.click();
-    await shopPage.addProductToCart(
-      productBags.MESSENGER_BAG,
-      numberOfItems.ONE,
-    );
+    await shopPage.addProductToCart(items.productName, items.numberOfItems);
     await expect(cartPage.cartCounter).toHaveText(numberOfItems.ONE);
     // Checkout
     await cartPage.proceedToCheckout();
@@ -43,7 +39,7 @@ test.describe("Sigh up flow validation", async () => {
     await expect(authPage.pageTitle).toHaveText(confirmation.ORDER_PLACED);
   });
 
-  test("Verify that registered can buy the product @smoke", async ({
+  test("Verify that registered user can buy the product @smoke", async ({
     shopPage,
     navigationPage,
     cartPage,
@@ -59,14 +55,19 @@ test.describe("Sigh up flow validation", async () => {
     // Add Bag to the cart
     await navigationPage.saleMenuLink.click();
     await navigationPage.bagsLink.click();
-    await shopPage.addProductToCart(
-      productBags.MESSENGER_BAG,
-      numberOfItems.ONE,
-    );
+    await shopPage.addProductToCart(items.productName, items.numberOfItems);
     await expect(cartPage.cartCounter).toHaveText(numberOfItems.ONE);
     // Checkout
     await cartPage.proceedToCheckout();
     await cartPage.fillCheckoutForm(existingCustomerData, shippingType.FIXED);
     await expect(authPage.pageTitle).toHaveText(confirmation.ORDER_PLACED);
+  });
+
+  test("Verify that unregistered user can order 12 items", async ({
+    navigationPage,
+  }) => {
+    // Add Bag to the cart
+    await navigationPage.jacketsLink.first().click();
+    // await shopPage.addProductToCart();
   });
 });

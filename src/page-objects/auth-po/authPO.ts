@@ -1,6 +1,5 @@
-import { apiConfig, payload } from "@/data/api-test-data";
 import { debounceDom } from "@/utils/utils";
-import { expect, Locator, Page, request } from "@playwright/test";
+import { expect, Locator, Page } from "@playwright/test";
 
 export default class AuthPage {
   // Pages
@@ -79,21 +78,5 @@ export default class AuthPage {
     await debounceDom(this.page);
     await this.signOutLink.click();
     await expect(this.pageTitle).toContainText("You are signed out");
-  }
-
-  async addNewAccountViaAPI() {
-    // Create a request context
-    const apiContext = await request.newContext(apiConfig);
-
-    // Perform the POST request
-    const response = await apiContext.post("/customer/account/createpost/", {
-      data: payload,
-    });
-
-    // Log the response status and body
-    console.log(`Status: ${response.status()}`);
-
-    // Dispose of the request context
-    await apiContext.dispose();
   }
 }

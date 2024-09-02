@@ -5,12 +5,16 @@ export default class ShopPage {
   page: Page;
   // Products
   productCards: Locator;
+  productImage: Locator;
   // General
   quantity: Locator;
+  pricesOnCards: Locator;
 
   constructor(page: Page) {
     this.page = page;
-    this.productCards = page.locator(".product-item-details");
+    this.productCards = page.locator(".product-item-info");
+    this.productImage = page.locator(".product-image-container");
+    this.pricesOnCards = page.locator(".normal-price");
     this.quantity = page.locator("#qty");
   }
 
@@ -20,15 +24,18 @@ export default class ShopPage {
     size?: string,
     color?: string,
   ) {
-    // Locate the product card containing the desired product name
-    const productCard = this.productCards.filter({ hasText: productName });
+    const productCard = this.productCards.filter({
+      hasText: productName,
+    });
     await expect(productCard).toHaveCount(1);
-    await productCard.click();
-    if (await productCard.getByRole("option", { name: size }).isVisible()) {
-      await productCard.getByRole("option", { name: size }).click();
+    await productCard.locator(this.productImage).click();
+    if (size) {
+      await this.page.locator(".swatch-option.text", { hasText: size }).click();
     }
-    if (await productCard.getByRole("option", { name: color }).isVisible()) {
-      await productCard.getByRole("option", { name: color }).click();
+    if (color) {
+      await this.page
+        .locator(`.swatch-option.color[aria-label=${color}]`)
+        .click();
     }
     await this.quantity.fill(numberOfItems);
     await this.page.getByTitle("Add to Cart").click();

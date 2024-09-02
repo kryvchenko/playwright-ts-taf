@@ -5,17 +5,14 @@ export default class NavigationPage {
   page: Page;
 
   // Link & Buttons
-  // newMenuLink: Locator;
-  // womanMenuLink: Locator;
-  // manMenuLink: Locator;
-  // gearMenuLink: Locator;
-  // trainingMenuLink: Locator;
   saleMenuLink: Locator;
   bagsLink: Locator;
+  jacketsLink: Locator;
 
   constructor(page: Page) {
     this.page = page;
     this.saleMenuLink = page.getByRole("menuitem", { name: "Sale" });
     this.bagsLink = page.getByRole("link", { name: "Bags" });
+    this.jacketsLink = page.getByRole("link", { name: "Jackets" });
   }
 }
