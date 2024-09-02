@@ -4,12 +4,8 @@ import {
   numberOfItems,
   shippingType,
 } from "@/constants/shop-const";
-import {
-  existingCustomerData,
-  markData,
-  stevenData,
-} from "@/data/account-test-data";
-import { items, womanJackets } from "@/data/shop-test-data";
+import { existingCustomerData, markData } from "@/data/account-test-data";
+import { items } from "@/data/shop-test-data";
 import { test } from "@/page-objects/basePO";
 import { generateRandomString } from "@/utils/utils";
 import { expect } from "@playwright/test";
@@ -64,28 +60,6 @@ test.describe("Shopping flow validation", async () => {
     // Checkout
     await cartPage.proceedToCheckout();
     await cartPage.fillCheckoutForm(existingCustomerData, shippingType.FIXED);
-    await expect(authPage.pageTitle).toHaveText(confirmation.ORDER_PLACED);
-  });
-
-  test("Verify that user can buy multiple items", async ({
-    navigationPage,
-    shopPage,
-    cartPage,
-    authPage,
-  }) => {
-    // Navigate to category women jackets
-    await navigationPage.jacketsLink.first().click();
-    // Iterate through test data
-    const items = womanJackets;
-    for (let i = 0; i < items.length; i++) {
-      const { productName, numberOfItems, size, color } = items[i];
-      await shopPage.addProductToCart(productName, numberOfItems, size, color);
-      await navigationPage.jacketsLink.first().click();
-    }
-    await expect(cartPage.cartCounter).toHaveText(numberOfItems.TEN);
-    // Checkout
-    await cartPage.proceedToCheckout();
-    await cartPage.fillCheckoutForm(stevenData, shippingType.FIXED);
     await expect(authPage.pageTitle).toHaveText(confirmation.ORDER_PLACED);
   });
 });

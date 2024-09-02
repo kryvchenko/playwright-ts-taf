@@ -39,3 +39,14 @@ This repository contains an end-to-end (E2E) test automation framework built wit
 3. SCM (Git)
 4. Change a path to Jenkins file `Jenkinsfile`
 5. Use the current repo URL
+
+## Running job from Docker
+
+1. Clone this repo and `cd /path/to/your/project`
+2. Build the image `docker build -t my-playwright-tests .`
+3. Run container `docker run --rm my-playwright-tests`
+
+## Docker troubleshooting
+
+1. Check Docker Logs: `docker logs <container_id>`
+2. Interactive Debugging: `docker run -it --entrypoint /bin/bash my-playwright-tests`
