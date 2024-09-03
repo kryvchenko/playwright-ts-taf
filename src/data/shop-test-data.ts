@@ -5,21 +5,21 @@ export const items = Object.freeze({
 
 export const womanJackets = Object.freeze([
   {
-    productName: "Olivia 1/4 Zip Light Jacket",
-    numberOfItems: "5",
-    size: "XS",
+    productName: "Nadia Elements Shell",
+    numberOfItems: "1",
+    size: "S",
     color: "Black",
   },
   {
-    productName: "Juno Jacket",
-    numberOfItems: "2",
-    size: "L",
+    productName: "Jade Yoga Jacket",
+    numberOfItems: "1",
+    size: "M",
     color: "Blue",
   },
   {
-    productName: "Neve Studio Dance Jacket",
-    numberOfItems: "3",
-    size: "M",
-    color: "Black",
+    productName: "Adrienne Trek Jacket",
+    numberOfItems: "2",
+    size: "XS",
+    color: "Gray",
   },
 ]);

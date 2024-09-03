@@ -10,5 +10,6 @@ export const shippingType = Object.freeze({
 export const numberOfItems = Object.freeze({
   ONE: "1",
   TWO: "2",
+  FOUR: "4",
   TEN: "10",
 });

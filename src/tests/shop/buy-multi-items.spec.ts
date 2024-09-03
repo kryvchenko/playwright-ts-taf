@@ -30,7 +30,7 @@ test.describe("Batch shopping flow validation", async () => {
       await shopPage.addProductToCart(productName, numberOfItems, size, color);
       await navigationPage.jacketsLink.first().click();
     }
-    await expect(cartPage.cartCounter).toHaveText(numberOfItems.TEN);
+    await expect(cartPage.cartCounter).toHaveText(numberOfItems.FOUR);
     // Checkout
     await cartPage.proceedToCheckout();
     await cartPage.fillCheckoutForm(stevenData, shippingType.FIXED);
