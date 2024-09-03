@@ -23,3 +23,24 @@ export const womanJackets = Object.freeze([
     color: "Gray",
   },
 ]);
+
+export const womanJacketsSale = Object.freeze([
+  {
+    productName: "Ingrid Running Jacket",
+    numberOfItems: "1",
+    size: "S",
+    color: "Red",
+  },
+  {
+    productName: "Augusta Pullover Jacket",
+    numberOfItems: "1",
+    size: "M",
+    color: "Blue",
+  },
+  {
+    productName: "Josie Yoga Jacket",
+    numberOfItems: "2",
+    size: "XS",
+    color: "Black",
+  },
+]);

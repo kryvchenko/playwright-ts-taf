@@ -25,8 +25,8 @@ test.describe("Batch shopping flow validation", async () => {
     await navigationPage.jacketsLink.first().click();
     // Iterate through test data
     const items = womanJackets;
-    for (let i = 0; i < items.length; i++) {
-      const { productName, numberOfItems, size, color } = items[i];
+    for (const item of items) {
+      const { productName, numberOfItems, size, color } = item;
       await shopPage.addProductToCart(productName, numberOfItems, size, color);
       await navigationPage.jacketsLink.first().click();
     }
