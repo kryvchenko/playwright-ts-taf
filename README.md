@@ -58,3 +58,4 @@ This repository contains an end-to-end (E2E) test automation framework built wit
 1. Create a test strategy and automation plan for entire application including critical path and regression tests
 2. Develop API methods for account creation/deletion and other time consuming tasks
 3. Add mechanism for secure storage of sensitive data
+4. Generate test data based on the current stock
