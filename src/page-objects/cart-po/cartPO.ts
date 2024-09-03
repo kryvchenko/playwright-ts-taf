@@ -1,4 +1,5 @@
 import { CustomerData } from "@/types/gen-t";
+import { debounceDom } from "@/utils/utils";
 import { Locator, Page } from "@playwright/test";
 
 export default class CartPage {
@@ -50,6 +51,7 @@ export default class CartPage {
 
   async proceedToCheckout() {
     await this.miniCartLink.click();
+    await debounceDom(this.page);
     await this.proceedToCheckoutButton.click();
   }
 

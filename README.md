@@ -26,6 +26,8 @@ This repository contains an end-to-end (E2E) test automation framework built wit
    `npm run test-chrome`
 4. To run smoke tests
    `npm run smoke`
+5. Run prettier with write flag:
+   `npm run prettier:fix`
 
 ## Jenkins Setup
 
@@ -50,3 +52,9 @@ This repository contains an end-to-end (E2E) test automation framework built wit
 
 1. Check Docker Logs: `docker logs <container_id>`
 2. Interactive Debugging: `docker run -it --entrypoint /bin/bash my-playwright-tests`
+
+## TODO
+
+1. Create a test strategy and automation plan for entire application including critical path and regression tests
+2. Develop API methods for account creation/deletion and other time consuming tasks
+3. Add mechanism for secure storage of sensitive data
